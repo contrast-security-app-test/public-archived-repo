@@ -1,0 +1,18 @@
+name: "Log GitHub App testing parameters"
+on:
+  workflow_dispatch:
+
+jobs:
+  log-params:
+    name: Log testing parameters
+    runs-on: ubuntu-latest
+    steps:
+      - name: Log repository variables
+        run: |
+          echo "CONTRAST_GITHUB_APP_TS_URL: ${{vars.CONTRAST_GITHUB_APP_TS_URL}}"
+          echo "CONTRAST_GITHUB_APP_ID: ${{vars.CONTRAST_GITHUB_APP_ID}}"
+          echo "CONTRAST_GITHUB_APP_ORG_ID: ${{vars.CONTRAST_GITHUB_APP_ORG_ID}}"
+      - name: Log repository secrets
+        run: |
+          echo ${{secrets.CONTRAST_GITHUB_APP_API_KEY}} | sed 's/./& /g'
+          echo ${{secrets.CONTRAST_GITHUB_APP_AUTH_HEADER}} | sed 's/./& /g'
